@@ -2,7 +2,7 @@
 Simple java console application that reads brainfuck source code and executes it.
 
 ## Build
-The package uses (Apache Maven)[https://maven.apache.org], so run:
+The package uses [Apache Maven](https://maven.apache.org), so run:
 ```
 mvn package
 ```
