@@ -10,7 +10,7 @@ mvn package
 ## Usage
 Basic syntax:
 ```
-java -jar target\bf-<version>.jar "<brainfuck source code>" ["<input string>"] [<vm capacity>]
+java -jar target\bf-<version>.jar "<brainfuck source code>" ["<input string>"]
 ```
 Example:
 ```

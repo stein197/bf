@@ -1,9 +1,10 @@
 package stein197.bf;
 
+import java.text.ParseException;
+
 public class Application {
 
 	private final String commands;
-	private final int vmCapacity;
 	private final String input;
 
 	public static void main(String ...args) {
@@ -12,19 +13,21 @@ public class Application {
 		String
 			input = args.length > 1 ? args[1] : null,
 			commands = args[0];
-		int capacity = args.length > 2 ? Integer.parseInt(args[2]) : commands.length();
-		new Application(commands, capacity, input).run();
+		try {
+			new Application(commands, input).run();
+		} catch (ParseException ex) {
+			System.out.println("Brainfuck source code parsing exception at " + ex.getErrorOffset() + ": " + ex.getMessage());
+		}
 	}
 
-	public Application(String commands, int capacity, String input) {
+	public Application(String commands, String input) {
 		this.commands = commands;
-		this.vmCapacity = capacity;
 		this.input = input;
 	}
 
-	public void run() {
-		Command[] commandArray = Parser.parse(this.commands);
-		var vm = new VM(this.vmCapacity);
-		System.out.println(vm.execute(commandArray, this.input == null ? null : this.input.toCharArray()));
+	public void run() throws ParseException {
+		SourceInfo info = Parser.parse(this.commands);
+		var vm = new VM(info.minCapacity());
+		System.out.println(vm.execute(info.commands(), this.input == null ? null : this.input.toCharArray()));
 	}
 }
