@@ -1,5 +1,6 @@
 # CHANGELOG
 ## [Unreleased]
+- Check for out of bounds at parsing time
 - Check for redundant open/close brackets at parsing time
 - Populate source code with docblocks
 - Add unit tests/coverage
